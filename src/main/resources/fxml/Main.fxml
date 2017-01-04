@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import com.jfoenix.validation.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="943.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fcis.asu.visualization.MainController">
+   <children>
+      <VBox layoutX="448.0" layoutY="31.0" prefHeight="161.0" prefWidth="131.0" spacing="15.0">
+         <children>
+            <JFXRadioButton fx:id="block" text="Block">
+               <toggleGroup>
+                  <ToggleGroup fx:id="blockType" />
+               </toggleGroup>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="heatSource" text="Heat Source" toggleGroup="$blockType" />
+            <JFXRadioButton fx:id="coldSource" text="Cold Source" toggleGroup="$blockType" />
+            <JFXRadioButton fx:id="normal" text="Noraml Cell" toggleGroup="$blockType" />
+            <JFXRadioButton fx:id="window" text="Window" toggleGroup="$blockType" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="597.0" layoutY="82.0" prefHeight="110.0" prefWidth="209.0" spacing="1.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="199.0" spacing="5.0">
+               <children>
+                  <Label text="Side :" />
+                  <JFXSlider fx:id="side" blockIncrement="20.0" cache="true" majorTickUnit="20.0" min="10.0" minorTickCount="20" prefHeight="38.0" prefWidth="154.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="40.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                      <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin> 
+                  </JFXSlider>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <JFXButton fx:id="updateCells" defaultButton="true" onAction="#updateView" prefHeight="35.0" prefWidth="108.0" ripplerFill="#642ac9" style="-fx-background-color: #11c7eb;" text="Update" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+               <padding>
+                  <Insets top="3.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="30.0" top="3.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <Pane layoutX="6.0" layoutY="12.0" prefHeight="510.0" prefWidth="431.0">
+         <children>
+            <Canvas fx:id="drawCanvas" height="400.0" layoutX="16.0" layoutY="42.0" onMouseClicked="#mouseClikedDraw" onMouseDragged="#mouseDraggedDraw" onMouseMoved="#mouseMove" width="400.0" />
+         </children>
+      </Pane>
+      <JFXButton fx:id="srart" defaultButton="true" layoutX="610.0" layoutY="25.0" onAction="#visual" prefHeight="35.0" prefWidth="125.0" ripplerFill="#642ac9" style="-fx-background-color: #11c7eb;" text="Start" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" />
+      <JFXButton fx:id="btnStop" defaultButton="true" layoutX="597.0" layoutY="25.0" onAction="#stopVisul" prefHeight="35.0" prefWidth="125.0" ripplerFill="#642ac9" style="-fx-background-color: #11c7eb;" text="Stop" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" visible="false" />
+      <VBox layoutX="540.0" layoutY="199.0" pickOnBounds="false" prefHeight="93.0" prefWidth="240.0" spacing="5.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="34.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="230.0">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="BLUE" />
+                        <Stop color="AQUA" offset="0.25" />
+                        <Stop color="LAWNGREEN" offset="0.4962962962962963" />
+                        <Stop color="ORANGE" offset="0.75" />
+                        <Stop color="RED" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <HBox prefHeight="35.0" prefWidth="180.0" spacing="10.0">
+               <children>
+                  <JFXTextField fx:id="min" maxWidth="60.0" minWidth="60.0" prefHeight="31.0" prefWidth="60.0" text="0" />
+                  <JFXTextField fx:id="max" maxWidth="56.0" minWidth="56.0" prefHeight="31.0" prefWidth="56.0" text="100" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <JFXButton fx:id="updateColor" onAction="#updateColors" prefHeight="25.0" prefWidth="107.0" ripplerFill="#6013e4" style="-fx-background-color: #11c7eb;" text="Update Color">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <Pane fx:id="temprature" layoutX="540.0" layoutY="369.0" prefHeight="86.0" prefWidth="125.0" />
+   </children>
+</AnchorPane>
